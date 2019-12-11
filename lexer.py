@@ -19,13 +19,26 @@ class SucketLexer(Lexer):
     # literals= 
 
     #Rules for Tokens
-    CREATE   = 'create'
-    SERVER   = 'server'
-    CONNECT  = 'connect'
-    RECEIVE  = 'receive'
-    SEND     = 'send'
-    CLIENT   = 'client'
-    CLOSE    = 'close'
-    BIND     = 'bind'
-    LISTEN   = 'listen'
-    ACCEPT   = 'accept'
+    CREATE   = r'create'
+    SERVER   = r'server'
+    CONNECT  = r'connect'
+    RECEIVE  = r'receive'
+    SEND     = r'send'
+    CLIENT   = r'client'
+    CLOSE    = r'close'
+    BIND     = r'bind'
+    LISTEN   = r'listen'
+    ACCEPT   = r'accept'
+
+    # Define a rule so we can track line numbers
+    def t_newline(self, t):
+        r"""
+        \n+
+        """
+        t.lexer.lineno += len(t.value)
+
+    def t_error(self, t):
+        print('Illegal character %s', t.value[0])
+        t.lexer.skip(1)
+        return t
+
