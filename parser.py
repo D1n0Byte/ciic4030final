@@ -11,7 +11,7 @@ class SucketParser(Parser):
         self.gCommands = { }
         self.cSocket = None
         self.sSocket = None
-        self.tSocket = None
+        self.tSocket = Server.create_socket(self)
     
     #Create the client
     @_('CREATE CLIENT')
@@ -30,6 +30,10 @@ class SucketParser(Parser):
     @_('CONNECT')
     def statement(self,p):
         Client.connect(self, self.cSocket)
+        
+    @_('CONNECT EXTERNAL')
+    def statement(self,p):
+        Client.connectExternal(self,self.cSocket)
 
     @_('RECEIVE')
     def statement(self,p):
@@ -37,9 +41,8 @@ class SucketParser(Parser):
 
     @_('SEND')
     def statement(self,p):
-        self.tSocket = Server.create_socket(self)
         Server.send(self, self.tSocket)
-        Client.receive(self.cSocket)
+        Client.receive(self,self.cSocket)
 
     @_('CLIENT CLOSE')
     def statement(self,p):
@@ -48,11 +51,6 @@ class SucketParser(Parser):
     @_('SERVER CLOSE')
     def statement(self,p):
         Server.close(self, self.sSocket)
-        
-    @_('CLOSE CONNECTIONS')
-    def statement(self,p):
-        Client.close(self, self.cSocket) 
-        Server.close(self,self.sSocket)
         
     @_('BIND')
     def statement(self,p):
@@ -65,7 +63,8 @@ class SucketParser(Parser):
 
     @_('ACCEPT')
     def statement(self,p):
-        return Server.accept(self, self.sSocket)
+        self.tSocket, address = Server.accept(self, self.sSocket)
+        return self.tSocket, address
         
         
 if __name__ == '__main__':

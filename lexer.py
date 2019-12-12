@@ -12,7 +12,7 @@ class SucketLexer(Lexer):
     BIND, 
     LISTEN, 
     ACCEPT,
-    CONNECTIONS
+    EXTERNAL
     }
 
     #strings containing ignored char between tokens
@@ -30,7 +30,7 @@ class SucketLexer(Lexer):
     BIND        = r'bind'
     LISTEN      = r'listen'
     ACCEPT      = r'accept'
-    CONNECTIONS = r'connections'
+    EXTERNAL    = r'external'
 
     # Define a rule so we can track line numbers
     def t_newline(self, t):

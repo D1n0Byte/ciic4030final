@@ -23,9 +23,9 @@ class Server_Init(object):
         return clt, adr
 
     def send(self,connection):
-        response = 'Successfully connected'
+        response = input('Type message: ')
         connection.send(response.encode())
-        print('Response sent')
+        print('Message sent')
 
     def close(self, s):
         s.close()
@@ -48,6 +48,15 @@ class Client_Init(object):
         except:
             print("Connection could not be established")
 
+    def connectExternal(self,s):
+        host = socket.gethostbyname(input('External Host ip address: \n '))
+        port = int(input('**************************************************************\n** To connect to the server you must use the same IP Address**\n**************************************************************\nPort:'))
+        try:
+            s.connect((host, port))
+            print('Connection has been established')
+        except:
+            print("Connection could not be established")
+    
     def receive(self,s):
         print(s.recv(4096))
 
