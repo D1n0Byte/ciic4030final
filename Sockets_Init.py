@@ -1,7 +1,9 @@
 import socket
 
 class Server_Init(object):
+
     def create_socket(self):
+        #Creates and returns a socket
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         print('Server Initialized')
         return self.socket
@@ -39,15 +41,12 @@ class Client_Init(object):
 
     def connect(self,s):
         host = input('Host ip address: \n*for localhost type 127.0.0.1* ')
-        port = int(input('Port: \n**************************************************************\n** To connect to the server you must use the same IP Address**\n**************************************************************'))
+        port = int(input('**************************************************************\n** To connect to the server you must use the same IP Address**\n**************************************************************\nPort:'))
         try:
             s.connect((host, port))
             print('Connection has been established')
         except:
-            if KeyboardInterrupt:
-                print("\n ** Connection Interrupted **")
-            else:
-                print("Connection could not be established")
+            print("Connection could not be established")
 
     def receive(self,s):
         print(s.recv(4096))

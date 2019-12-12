@@ -11,24 +11,26 @@ class SucketLexer(Lexer):
     CLOSE, 
     BIND, 
     LISTEN, 
-    ACCEPT
+    ACCEPT,
+    CONNECTIONS
     }
 
     #strings containing ignored char between tokens
-    ignore= ' \s'
+    ignore= ' \t'
     # literals= 
 
     #Rules for Tokens
-    CREATE   = r'create'
-    SERVER   = r'server'
-    CONNECT  = r'connect'
-    RECEIVE  = r'receive'
-    SEND     = r'send'
-    CLIENT   = r'client'
-    CLOSE    = r'close'
-    BIND     = r'bind'
-    LISTEN   = r'listen'
-    ACCEPT   = r'accept'
+    CREATE      = r'create'
+    SERVER      = r'server'
+    CONNECT     = r'connect'
+    RECEIVE     = r'receive'
+    SEND        = r'send'
+    CLIENT      = r'client'
+    CLOSE       = r'close'
+    BIND        = r'bind'
+    LISTEN      = r'listen'
+    ACCEPT      = r'accept'
+    CONNECTIONS = r'connections'
 
     # Define a rule so we can track line numbers
     def t_newline(self, t):
