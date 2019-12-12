@@ -5,7 +5,7 @@ from lexer import SucketLexer
 import sys
 
 class SucketParser(Parser): 
-    tokens = lexer.tokens
+    tokens = SucketLexer.tokens
     
     def __init__(self):
         self.gCommands = { }
@@ -15,12 +15,12 @@ class SucketParser(Parser):
     
     @_('CREATE CLIENT')
     def p_create_client(self,p):
-        self.cSocket = Client.create_socket()
+        self.cSocket = Client.create_socket(self)
         self.gCommands[p.CLIENT] = self.cSocket 
 
     @_('CREATE SERVER')
     def p_create_server(self,p):
-        self.sSocket = Server.create_socket()
+        self.sSocket = Server.create_socket(self)
         self.gCommands[p.SERVER] = self.sSocket
 
     @_('CONNECT')
@@ -33,7 +33,7 @@ class SucketParser(Parser):
 
     @_('SEND')
     def p_send(self,p):
-        self.tSocket = Server.create_socket()
+        self.tSocket = Server.create_socket(self)
         Server.send(self.tSocket)
 
     @_('CLIENT CLOSE')
@@ -59,7 +59,6 @@ class SucketParser(Parser):
         Server.close(self.sSocket)
         
         
-    
 if __name__ == '__main__':
     lexer = SucketLexer()
     parser = SucketParser()

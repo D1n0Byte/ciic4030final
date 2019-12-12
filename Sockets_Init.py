@@ -44,10 +44,10 @@ class Client_Init(object):
             s.connect((host, port))
             print('Connection has been established')
         except:
-			if KeyboardInterrupt:
-				print("\n ** Connection Interrupted **")
-			else:
-				print("Connection could not be established")
+            if KeyboardInterrupt:
+                print("\n ** Connection Interrupted **")
+            else:
+                print("Connection could not be established")
 
     def receive(self,s):
         print(s.recv(4096))

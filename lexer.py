@@ -15,7 +15,7 @@ class SucketLexer(Lexer):
     }
 
     #strings containing ignored char between tokens
-    ignore= ' \t'
+    ignore= ' \s'
     # literals= 
 
     #Rules for Tokens
