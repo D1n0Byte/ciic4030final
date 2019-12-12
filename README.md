@@ -1,35 +1,19 @@
-# ICOM4036 Project: Device Communications
+# CIIC4030 Project: SuckET Device Communications
 
 Design a new programming language to simplify the communication between
 devices: The new language must be declarative and functional and provide
 simple functionality to create local servers and allow communication with
 external servers. You must clearly define the syntax of the new language.
 
--  Use Python libraries (e.g. PLY) to develop the scanner, parser and
-intermediate code.
-- Develop a short video (up to 4 minutes) to demonstrate the features of your
-language.
-- Provide a public GitHub repo with your code and documentation. Be sure all
-members of the team are equally contributing to the project.
-
 # Team Members
 
-- Roberto Guzmán
-- Cristian Ruiz
+- María Cordero
+- Julio Aguilar
 
 # Description
 
-The programming language that we will be building consists of a combination of variable assignments and declarative language such as `SQL`.
+The language will allow to perform basic creation of local servers and allow communication with servers.
 
-The language will allow to perform basic creation of local servers and allow communication with external servers.
-
-***
-#####NOTES
-
-1. Only basic operations will be made such as, local server to server connections and client connections. External connections will be performing some GET requests.
-
-2. Some operating systems may take longer to close ports. So, if testing is done fast enough error will be thrown.
-***
 
 # Language Structure
 
